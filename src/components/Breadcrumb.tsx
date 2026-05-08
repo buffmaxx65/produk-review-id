@@ -8,19 +8,25 @@ export type Crumb = {
 
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-ink-500">
-      <ol className="flex items-center gap-1.5">
+    <nav aria-label="Breadcrumb" className="text-xs uppercase tracking-wider text-ink-500">
+      <ol className="flex items-center gap-2">
         <li>
-          <Link href="/" className="inline-flex items-center hover:text-brand-700">
+          <Link
+            href="/"
+            className="inline-flex items-center hover:text-ink-900"
+          >
             <Home className="h-3.5 w-3.5" />
             <span className="sr-only">Beranda</span>
           </Link>
         </li>
         {items.map((it, i) => (
-          <li key={i} className="flex items-center gap-1.5">
-            <ChevronRight className="h-3.5 w-3.5 text-ink-400" />
+          <li key={i} className="flex items-center gap-2">
+            <ChevronRight className="h-3 w-3 text-ink-400" />
             {it.href ? (
-              <Link href={it.href} className="hover:text-brand-700">
+              <Link
+                href={it.href}
+                className="underline-offset-4 hover:text-ink-900 hover:underline hover:decoration-accent"
+              >
                 {it.name}
               </Link>
             ) : (

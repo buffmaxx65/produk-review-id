@@ -5,14 +5,14 @@ type Props = {
 
 export function ComparisonTable({ headers, rows }: Props) {
   return (
-    <div className="my-8 overflow-x-auto rounded-2xl border border-ink-200">
+    <div className="my-8 overflow-x-auto border-y border-ink-200">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
-          <tr className="bg-ink-900 text-white">
+          <tr className="border-b-2 border-ink-900">
             {headers.map((h, i) => (
               <th
                 key={i}
-                className="px-4 py-3 text-left font-semibold first:rounded-tl-2xl last:rounded-tr-2xl"
+                className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-ink-900"
               >
                 {h}
               </th>
@@ -23,15 +23,17 @@ export function ComparisonTable({ headers, rows }: Props) {
           {rows.map((row, ri) => (
             <tr
               key={ri}
-              className={ri % 2 === 0 ? "bg-white" : "bg-ink-50"}
+              className="border-b border-ink-200 last:border-b-0"
             >
               {row.map((cell, ci) => (
                 <td
                   key={ci}
-                  className="border-t border-ink-200 px-4 py-3 align-top text-ink-800"
+                  className="px-4 py-3 align-top text-ink-800"
                 >
                   {ci === 0 ? (
-                    <span className="font-semibold text-ink-900">{cell}</span>
+                    <span className="font-serif text-base font-medium text-ink-900">
+                      {cell}
+                    </span>
                   ) : (
                     cell
                   )}

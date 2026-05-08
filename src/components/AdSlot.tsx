@@ -46,7 +46,7 @@ export function AdSlot({
     return (
       <div
         className={cn(
-          "flex h-24 items-center justify-center rounded-xl border border-dashed border-ink-300 bg-ink-50 text-xs uppercase tracking-wide text-ink-500",
+          "flex h-24 items-center justify-center border border-dashed border-ink-300 bg-paper-200 text-[11px] uppercase tracking-kicker text-ink-500",
           className,
         )}
       >

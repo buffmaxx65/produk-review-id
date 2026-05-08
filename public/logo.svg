@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#0369a1"/>
-    </linearGradient>
-  </defs>
-  <rect x="0" y="6" width="36" height="36" rx="8" fill="url(#g)"/>
-  <path fill="#fff" d="M18 12.5l2.74 5.55 6.13.89-4.43 4.32 1.04 6.1L18 26.5l-5.48 2.86 1.04-6.1L9.13 18.94l6.13-.89z"/>
-  <text x="44" y="32" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="20" fill="#0f172a">Produk Review ID</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" role="img" aria-label="Produk Review ID">
+  <style>
+    .word { font-family: "Fraunces", "Source Serif 4", Georgia, serif; font-weight: 500; font-style: italic; font-size: 44px; fill: #0F0E0C; letter-spacing: -0.01em; }
+    .dot { fill: #C2351A; }
+    .sub { font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: 12px; fill: #6E6553; letter-spacing: 0.18em; text-transform: uppercase; }
+  </style>
+  <text class="word" x="0" y="56">Produk<tspan class="dot">.</tspan>Review</text>
+  <text class="sub" x="306" y="56">ID</text>
 </svg>

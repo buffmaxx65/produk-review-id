@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ReviewCard } from "@/components/ReviewCard";
-import { SectionHeading } from "@/components/SectionHeading";
 import { Newsletter } from "@/components/Newsletter";
 import { categories, getCategory } from "@/data/categories";
 import { getReviewsByCategory } from "@/lib/reviews";
@@ -47,20 +46,33 @@ export default function CategoryPage({
           __html: JSON.stringify(breadcrumbJsonLd(breadcrumb)),
         }}
       />
-      <section className="bg-gradient-to-b from-brand-50/60 to-white">
-        <div className="container py-10 sm:py-14">
+      <section className="border-b border-ink-200 bg-paper-100">
+        <div className="container py-12 sm:py-16">
           <Breadcrumb items={breadcrumb} />
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <span
-              className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${cat.color} text-white shadow-sm`}
-            >
-              <Icon className="h-6 w-6" />
-            </span>
-            <div>
-              <h1 className="font-serif text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
-                Review {cat.name} terbaik
+          <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <div className="flex items-center gap-3 text-ink-500">
+                <span className="kicker-accent">Kategori</span>
+                <span className="h-px w-8 bg-ink-300" aria-hidden />
+                <span className="kicker">
+                  {reviews.length} review tersedia
+                </span>
+              </div>
+              <h1 className="mt-5 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-ink-900 sm:text-[3.25rem] lg:text-[3.75rem]">
+                Review{" "}
+                <em className="font-serif font-medium italic text-accent">
+                  {cat.name}
+                </em>{" "}
+                terbaik
               </h1>
-              <p className="mt-2 max-w-2xl text-ink-600">{cat.description}</p>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-600 sm:text-lg">
+                {cat.description}
+              </p>
+            </div>
+            <div className="hidden lg:col-span-4 lg:block">
+              <div className="ml-auto flex h-32 w-32 items-center justify-center border border-ink-300 bg-paper-200 text-ink-700">
+                <Icon className="h-12 w-12" strokeWidth={1.25} />
+              </div>
             </div>
           </div>
         </div>
@@ -68,16 +80,12 @@ export default function CategoryPage({
 
       <section className="section">
         <div className="container">
-          <SectionHeading
-            title={`${reviews.length} review tersedia`}
-            description="Diurutkan dari yang terbaru."
-          />
           {reviews.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-ink-300 bg-ink-50 p-10 text-center text-ink-500">
+            <p className="border border-dashed border-ink-300 bg-paper-200 p-10 text-center text-ink-500">
               Belum ada review di kategori ini. Cek kembali nanti.
             </p>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
               {reviews.map((r) => (
                 <ReviewCard key={r.slug} review={r} />
               ))}
@@ -86,7 +94,7 @@ export default function CategoryPage({
         </div>
       </section>
 
-      <section className="section">
+      <section className="section pt-0">
         <div className="container">
           <Newsletter variant="card" />
         </div>

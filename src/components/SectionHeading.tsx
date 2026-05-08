@@ -21,27 +21,24 @@ export function SectionHeading({
   return (
     <div
       id={id}
-      className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between"
+      className="mb-8 flex flex-col gap-4 border-t border-ink-200 pt-6 sm:mb-10 sm:flex-row sm:items-end sm:justify-between"
     >
       <div className="max-w-2xl">
-        {eyebrow ? (
-          <p className="text-xs font-bold uppercase tracking-wider text-brand-700">
-            {eyebrow}
-          </p>
-        ) : null}
-        <h2 className="mt-1 font-serif text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl lg:text-4xl">
+        {eyebrow ? <p className="kicker-accent">{eyebrow}</p> : null}
+        <h2 className="mt-2 font-serif text-3xl font-medium leading-tight tracking-tight text-ink-900 sm:text-[2.25rem] lg:text-[2.75rem]">
           {title}
         </h2>
         {description ? (
-          <p className="mt-2 text-ink-600">{description}</p>
+          <p className="mt-3 max-w-prose text-ink-600">{description}</p>
         ) : null}
       </div>
       {ctaHref ? (
         <Link
           href={ctaHref}
-          className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          className="group inline-flex shrink-0 items-center gap-1 self-start text-sm font-medium text-ink-900 underline-offset-4 hover:underline hover:decoration-accent sm:self-end"
         >
-          {ctaLabel} <ArrowRight className="h-4 w-4" />
+          {ctaLabel}{" "}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       ) : null}
     </div>

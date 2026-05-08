@@ -1,30 +1,33 @@
 import Link from "next/link";
 import { categories } from "@/data/categories";
-import { ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function CategoryGrid() {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      {categories.map((c) => {
+    <div className="grid divide-y divide-ink-200 border-y border-ink-200 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-5">
+      {categories.map((c, i) => {
         const Icon = c.icon;
         return (
           <Link
             key={c.slug}
             href={`/kategori/${c.slug}`}
-            className="group relative overflow-hidden rounded-2xl border border-ink-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-card"
+            className="group relative flex flex-col gap-3 p-6 transition-colors hover:bg-paper-200 sm:p-7"
           >
-            <div
-              className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${c.color} text-white shadow-sm`}
-            >
-              <Icon className="h-5 w-5" />
+            <div className="flex items-center justify-between">
+              <span className="kicker text-ink-500">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <Icon className="h-5 w-5 text-ink-700 transition-colors group-hover:text-accent" />
             </div>
-            <h3 className="text-base font-semibold text-ink-900">{c.name}</h3>
-            <p className="mt-1 line-clamp-2 text-xs text-ink-500">
+            <h3 className="font-serif text-xl font-medium tracking-tight text-ink-900">
+              {c.name}
+            </h3>
+            <p className="line-clamp-3 text-xs leading-relaxed text-ink-600">
               {c.description}
             </p>
-            <span className="mt-3 inline-flex items-center text-xs font-medium text-brand-700 opacity-0 transition group-hover:opacity-100">
+            <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-ink-900 underline-offset-4 group-hover:underline group-hover:decoration-accent">
               Lihat review
-              <ChevronRight className="ml-0.5 h-3.5 w-3.5" />
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
         );

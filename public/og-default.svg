@@ -1,21 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0c4a6e"/>
-      <stop offset="100%" stop-color="#0369a1"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="900" cy="200" r="320" fill="url(#glow)"/>
-  <g transform="translate(80,80)">
-    <rect x="0" y="0" width="80" height="80" rx="18" fill="#0ea5e9"/>
-    <path fill="#fff" d="M40 16l6.85 13.88 15.32 2.23-11.08 10.8L53.7 58.4 40 51.25 26.3 58.4l2.6-15.49L17.83 32.1l15.32-2.23z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Produk Review ID — Open Graph">
+  <rect width="1200" height="630" fill="#FBF8F3"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#C2351A"/>
+  <g transform="translate(80,110)">
+    <text font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="22" fill="#6E6553" letter-spacing="4">EDISI MINGGUAN — INDEPENDEN, DIUJI EDITOR</text>
   </g>
-  <text x="80" y="280" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="84" fill="#fff">Produk Review ID</text>
-  <text x="80" y="360" font-family="Inter, system-ui, sans-serif" font-weight="500" font-size="36" fill="#bae6fd">Review jujur, rekomendasi terbaik</text>
-  <text x="80" y="560" font-family="Inter, system-ui, sans-serif" font-weight="500" font-size="22" fill="#7dd3fc">Teknologi · Kecantikan · Rumah Tangga · Kesehatan · Fashion</text>
+  <g transform="translate(80,200)">
+    <text font-family="Fraunces, 'Source Serif 4', Georgia, serif" font-weight="500" font-size="116" fill="#0F0E0C" letter-spacing="-3">
+      <tspan x="0" dy="0">Review jujur untuk</tspan>
+      <tspan x="0" dy="124">produk yang <tspan font-style="italic" fill="#C2351A">benar-benar</tspan></tspan>
+      <tspan x="0" dy="124">layak dibeli.</tspan>
+    </text>
+  </g>
+  <g transform="translate(80,580)">
+    <text font-family="Fraunces, 'Source Serif 4', Georgia, serif" font-weight="500" font-style="italic" font-size="32" fill="#0F0E0C">Produk<tspan fill="#C2351A">.</tspan>Review</text>
+    <text font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="14" fill="#6E6553" letter-spacing="3" x="220">PRODUK-REVIEW.ID</text>
+  </g>
 </svg>

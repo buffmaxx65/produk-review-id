@@ -1,101 +1,101 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Star, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Review } from "@/lib/reviews";
 import { StarRating } from "./StarRating";
 
 export function Hero({ featured }: { featured: Review }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
-      <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-brand-200/40 blur-3xl"
-        aria-hidden
-      />
-      <div className="container relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:py-24">
-        <div>
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="badge badge-brand">
-              <ShieldCheck className="h-3.5 w-3.5" /> 100% Independen
-            </span>
-            <span className="badge">
-              <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />{" "}
-              Diuji editor
-            </span>
-            <span className="badge">
-              <TrendingUp className="h-3.5 w-3.5 text-emerald-600" />{" "}
-              Update setiap minggu
-            </span>
-          </div>
-          <h1 className="mt-4 font-serif text-4xl font-bold leading-tight tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
-            Review jujur untuk produk yang benar-benar layak dibeli
-          </h1>
-          <p className="mt-5 max-w-xl text-base text-ink-600 sm:text-lg">
-            Editor kami menguji ratusan produk teknologi, kecantikan, kesehatan,
-            rumah tangga, dan fashion. Hanya yang terbaik yang lolos
-            rekomendasi.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/kategori/teknologi" className="btn btn-primary btn-lg">
-              Jelajahi Review <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="#editor-pick" className="btn btn-outline">
-              Pilihan Editor
-            </Link>
-          </div>
-          <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-ink-200 pt-6 text-sm">
-            <div>
-              <dt className="text-ink-500">Produk diuji</dt>
-              <dd className="text-2xl font-bold text-ink-900">500+</dd>
+    <section className="relative border-b border-ink-200 bg-paper-100">
+      <div className="container py-12 sm:py-16 lg:py-24">
+        <div className="grid items-end gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-3 text-ink-500">
+              <span className="kicker-accent">Edisi mingguan</span>
+              <span className="h-px w-8 bg-ink-300" aria-hidden />
+              <span className="kicker">Independen · Diuji editor</span>
             </div>
-            <div>
-              <dt className="text-ink-500">Pembaca/bulan</dt>
-              <dd className="text-2xl font-bold text-ink-900">1.2 jt</dd>
+            <h1 className="mt-6 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-ink-900 sm:text-[3.25rem] lg:text-[4.25rem]">
+              Review jujur untuk produk yang{" "}
+              <em className="font-serif font-medium italic text-accent">
+                benar-benar
+              </em>{" "}
+              layak dibeli.
+            </h1>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-600 sm:text-lg">
+              Editor kami menguji ratusan produk teknologi, kecantikan,
+              kesehatan, rumah tangga, dan fashion. Hanya yang terbaik yang
+              lolos rekomendasi.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/kategori/teknologi"
+                className="btn btn-primary btn-lg"
+              >
+                Jelajahi review <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="#editor-pick" className="btn btn-outline btn-lg">
+                Pilihan editor
+              </Link>
             </div>
-            <div>
-              <dt className="text-ink-500">Rating editor</dt>
-              <dd className="flex items-center gap-1 text-2xl font-bold text-ink-900">
-                4.8
-                <Star className="h-5 w-5 fill-amber-400 text-amber-400" />
-              </dd>
-            </div>
-          </dl>
-        </div>
 
-        <Link
-          href={`/review/${featured.slug}`}
-          className="group relative block overflow-hidden rounded-3xl border border-ink-200 bg-white shadow-card transition hover:shadow-cardHover"
-        >
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-100">
-            <Image
-              src={featured.cover}
-              alt={featured.title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-            <div className="absolute left-4 top-4 flex items-center gap-2">
-              <span className="inline-flex items-center rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-ink-900">
-                EDITOR'S CHOICE
-              </span>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-              <p className="text-xs uppercase tracking-wider text-white/80">
-                {featured.brand}
-              </p>
-              <h2 className="mt-1 text-2xl font-bold leading-tight sm:text-3xl">
-                {featured.title}
-              </h2>
-              <div className="mt-3 flex items-center gap-3">
-                <StarRating value={featured.rating} size="md" />
-                <span className="text-sm font-semibold">
-                  {featured.rating.toFixed(1)} / 5
-                </span>
+            <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-ink-200 pt-8 sm:gap-10">
+              <div>
+                <dt className="kicker">Produk diuji</dt>
+                <dd className="mt-1 font-serif text-3xl font-medium text-ink-900 sm:text-[2rem]">
+                  500
+                  <span className="text-accent">+</span>
+                </dd>
+              </div>
+              <div>
+                <dt className="kicker">Pembaca / bln</dt>
+                <dd className="mt-1 font-serif text-3xl font-medium text-ink-900 sm:text-[2rem]">
+                  1,2 jt
+                </dd>
+              </div>
+              <div>
+                <dt className="kicker">Rating editor</dt>
+                <dd className="mt-1 font-serif text-3xl font-medium text-ink-900 sm:text-[2rem]">
+                  4,8<span className="text-accent">/5</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <Link
+            href={`/review/${featured.slug}`}
+            className="group relative block lg:col-span-5"
+          >
+            <p className="kicker-accent">Pilihan editor</p>
+            <div className="relative mt-3 aspect-[4/5] w-full overflow-hidden bg-ink-100">
+              <Image
+                src={featured.cover}
+                alt={featured.title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover transition duration-700 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/70 via-ink-950/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-paper-50">
+                <p className="kicker text-paper-200/80">{featured.brand}</p>
+                <h2 className="mt-2 font-serif text-2xl font-medium leading-tight sm:text-[1.75rem]">
+                  {featured.title}
+                </h2>
+                <div className="mt-4 flex items-center gap-3 text-paper-50">
+                  <StarRating value={featured.rating} size="md" />
+                  <span className="text-sm font-medium">
+                    {featured.rating.toFixed(1)} / 5
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
+            <p className="mt-3 inline-flex items-center gap-1 text-sm text-ink-700 underline-offset-4 group-hover:text-ink-900 group-hover:underline group-hover:decoration-accent">
+              Baca review lengkap{" "}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </p>
+          </Link>
+        </div>
       </div>
     </section>
   );

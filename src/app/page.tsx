@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { CategoryGrid } from "@/components/CategoryGrid";
 import { ReviewCard } from "@/components/ReviewCard";
@@ -28,7 +30,7 @@ export default function HomePage() {
   if (!heroPick) {
     return (
       <div className="container py-24 text-center">
-        <h1 className="text-3xl font-bold">Belum ada review</h1>
+        <h1 className="font-serif text-3xl font-medium">Belum ada review</h1>
         <p className="mt-2 text-ink-600">
           Tambahkan file MDX di /content/reviews untuk memulai.
         </p>
@@ -51,7 +53,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="editor-pick" className="section bg-ink-50/60">
+      <section id="editor-pick" className="section bg-paper-200">
         <div className="container">
           <SectionHeading
             eyebrow="Editor's Pick"
@@ -60,7 +62,7 @@ export default function HomePage() {
             ctaHref="/kategori/teknologi"
             ctaLabel="Semua pilihan editor"
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((r) => (
               <ReviewCard key={r.slug} review={r} />
             ))}
@@ -69,7 +71,7 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
+        <div className="container grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="Terbaru"
@@ -78,31 +80,29 @@ export default function HomePage() {
               ctaHref="/kategori/teknologi"
               ctaLabel="Lihat semua review"
             />
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2">
               {latest.map((r) => (
                 <ReviewCard key={r.slug} review={r} />
               ))}
             </div>
           </div>
 
-          <aside className="space-y-6">
+          <aside className="space-y-10">
             <Newsletter variant="compact" />
-            <div className="rounded-2xl border border-ink-200 bg-white p-5">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-ink-500">
-                Trending sekarang
-              </h3>
-              <ol className="mt-4 space-y-3">
+            <div className="border-t border-ink-200 pt-6">
+              <p className="kicker-accent">Trending sekarang</p>
+              <ol className="mt-5 space-y-5">
                 {trending.slice(0, 5).map((r, i) => (
-                  <li key={r.slug} className="flex gap-3">
-                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-100 text-sm font-bold text-brand-800">
-                      {i + 1}
+                  <li key={r.slug} className="flex gap-4">
+                    <span className="font-serif text-2xl font-medium italic leading-none text-accent tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <a
+                    <Link
                       href={`/review/${r.slug}`}
-                      className="line-clamp-2 text-sm font-medium text-ink-900 hover:text-brand-700"
+                      className="line-clamp-3 text-[15px] font-medium leading-snug text-ink-900 underline-offset-4 hover:underline hover:decoration-accent"
                     >
                       {r.title}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ol>
@@ -112,22 +112,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section bg-gradient-to-b from-white to-ink-50/60">
+      <section className="section bg-paper-200">
         <div className="container">
           <SectionHeading
             eyebrow="Trending"
             title="Sedang banyak dicari pembaca"
             description="Top review paling populer minggu ini berdasarkan klik dan share pembaca."
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {trending.map((r) => (
               <ReviewCard key={r.slug} review={r} />
             ))}
           </div>
+          <div className="mt-12 flex justify-center border-t border-ink-200 pt-8">
+            <Link
+              href="/kategori/teknologi"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-ink-900 underline-offset-4 hover:underline hover:decoration-accent"
+            >
+              Telusuri semua review{" "}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section pt-0">
         <div className="container">
           <Newsletter variant="card" />
         </div>

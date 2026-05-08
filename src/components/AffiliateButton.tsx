@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { affiliateLinks } from "@/data/affiliate.config";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ type Props = {
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
   showPrice?: boolean;
-  source?: string; // article slug / placement (e.g. "hero", "compare", "sidebar")
+  source?: string;
   className?: string;
 };
 
@@ -27,7 +27,7 @@ export function AffiliateButton({
   const link = affiliateLinks[id];
   if (!link) {
     return (
-      <span className="inline-flex items-center gap-2 rounded-lg bg-ink-100 px-4 py-2 text-sm text-ink-500">
+      <span className="inline-flex items-center gap-2 rounded-md bg-ink-100 px-4 py-2 text-sm text-ink-500">
         Link tidak ditemukan: {id}
       </span>
     );
@@ -39,9 +39,9 @@ export function AffiliateButton({
     secondary: "btn-secondary",
   }[variant];
   const sizeClass = {
-    sm: "px-3 py-1.5 text-xs",
-    md: "px-5 py-2.5 text-sm",
-    lg: "px-6 py-3 text-base",
+    sm: "btn-sm",
+    md: "",
+    lg: "btn-lg",
   }[size];
 
   const trackUrl = `/api/track/${encodeURIComponent(link.id)}${
@@ -49,15 +49,13 @@ export function AffiliateButton({
   }`;
 
   const hasPrice = showPrice && Boolean(link.price);
-  // Untuk tombol full-width dengan harga, gunakan layout 2-baris (label di atas,
-  // harga di bawah) supaya tidak terpotong di sidebar sempit (≤320px).
   const stacked = fullWidth && hasPrice;
 
   const priceBadgeClass = cn(
-    "inline-block whitespace-nowrap rounded-md px-1.5 py-0.5 text-xs font-semibold",
+    "inline-block whitespace-nowrap rounded px-1.5 py-0.5 text-xs font-semibold tracking-tight",
     variant === "outline" || variant === "secondary"
       ? "bg-ink-900/10 text-ink-900"
-      : "bg-white/20 text-white",
+      : "bg-white/15 text-white",
   );
 
   return (
@@ -86,7 +84,7 @@ export function AffiliateButton({
           {hasPrice ? (
             <span className={priceBadgeClass}>{link.price}</span>
           ) : null}
-          <ExternalLink className="h-4 w-4 shrink-0" aria-hidden />
+          <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />
         </>
       )}
     </Link>

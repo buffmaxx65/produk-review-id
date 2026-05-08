@@ -99,55 +99,59 @@ export default function ReviewPage({
         }}
       />
 
-      <section className="border-b border-ink-200 bg-gradient-to-b from-brand-50/60 to-white">
-        <div className="container py-8 sm:py-12">
+      <section className="border-b border-ink-200 bg-paper-100">
+        <div className="container py-10 sm:py-14">
           <Breadcrumb items={breadcrumb} />
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs">
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-kicker text-ink-500">
             {cat ? (
               <Link
                 href={`/kategori/${cat.slug}`}
-                className="badge badge-brand"
+                className="text-accent transition-colors hover:text-accent-dark"
               >
                 {cat.name}
               </Link>
             ) : null}
-            <span className="badge">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Diuji
-              editor
+            <span className="h-px w-6 bg-ink-300" aria-hidden />
+            <span className="inline-flex items-center gap-1.5">
+              <ShieldCheck className="h-3.5 w-3.5 text-ink-700" /> Diuji editor
             </span>
-            <span className="badge">
+            <span className="h-px w-6 bg-ink-300" aria-hidden />
+            <span className="inline-flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               {review.readingTimeMinutes} menit baca
             </span>
-            <span className="badge">
+            <span className="h-px w-6 bg-ink-300" aria-hidden />
+            <span className="inline-flex items-center gap-1.5">
               <Calendar className="h-3.5 w-3.5" />
               {formatDate(review.date)}
             </span>
           </div>
-          <h1 className="mt-3 font-serif text-3xl font-bold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
+          <h1 className="mt-6 max-w-4xl font-serif text-[2rem] font-medium leading-[1.1] tracking-tight text-ink-900 sm:text-[2.75rem] lg:text-[3.5rem]">
             {review.title}
           </h1>
-          <p className="mt-3 max-w-3xl text-lg text-ink-700">
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-600">
             {review.excerpt}
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-ink-600">
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-ink-200 pt-5 text-sm text-ink-600">
             <span>
               Oleh{" "}
               <span className="font-semibold text-ink-900">
                 {review.author}
               </span>
-              {review.authorTitle ? `, ${review.authorTitle}` : null}
+              {review.authorTitle ? (
+                <span className="text-ink-500">, {review.authorTitle}</span>
+              ) : null}
             </span>
-            <span className="text-ink-300">•</span>
+            <span className="h-px w-6 bg-ink-300" aria-hidden />
             <StarRating value={review.rating} size="md" showValue />
           </div>
         </div>
       </section>
 
-      <section className="section pt-8">
-        <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
+      <section className="section pt-10">
+        <div className="container grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
           <article>
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-ink-100 shadow-card">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink-100">
               <Image
                 src={review.cover}
                 alt={review.title}
@@ -162,32 +166,44 @@ export default function ReviewPage({
 
             <ProsCons pros={review.pros} cons={review.cons} />
 
-            <h2 id="fitur-utama" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="fitur-utama"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Fitur Utama
             </h2>
-            <ul className="my-4 list-disc space-y-2 pl-6 text-ink-800">
+            <ul className="my-4 list-disc space-y-2 pl-6 text-ink-800 marker:text-accent">
               {review.bestFor.map((b, i) => (
                 <li key={i}>{b}</li>
               ))}
             </ul>
 
-            <h2 id="spesifikasi" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="spesifikasi"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Spesifikasi
             </h2>
             <SpecsTable specs={review.specs} />
 
             <InArticleCTA review={review} />
 
-            <h2 id="pengalaman" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="pengalaman"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Pengalaman Penggunaan
             </h2>
             <MdxContent source={review.body} />
 
-            <AdSlot slot="article-mid" className="my-8 min-h-[120px]" />
+            <AdSlot slot="article-mid" className="my-10 min-h-[120px]" />
 
             {review.comparison ? (
               <>
-                <h2 id="perbandingan" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+                <h2
+                  id="perbandingan"
+                  className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+                >
                   Perbandingan dengan Kompetitor
                 </h2>
                 <ComparisonTable
@@ -197,32 +213,37 @@ export default function ReviewPage({
               </>
             ) : null}
 
-            <h2 id="cocok-untuk" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="cocok-untuk"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Cocok untuk siapa?
             </h2>
-            <div className="my-4 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5">
-                <p className="text-sm font-bold uppercase tracking-wider text-emerald-800">
-                  Beli kalau kamu...
-                </p>
-                <ul className="mt-3 space-y-2 text-ink-800">
+            <div className="my-4 grid gap-6 sm:grid-cols-2">
+              <div className="border-l-2 border-accent bg-paper-200 p-6">
+                <p className="kicker-accent">Beli kalau kamu...</p>
+                <ul className="mt-4 space-y-2.5 text-ink-800">
                   {review.bestFor.map((b, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+                    <li key={i} className="flex gap-3">
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                        aria-hidden
+                      />
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               {review.notFor && review.notFor.length ? (
-                <div className="rounded-2xl border border-rose-200 bg-rose-50/60 p-5">
-                  <p className="text-sm font-bold uppercase tracking-wider text-rose-800">
-                    Skip kalau kamu...
-                  </p>
-                  <ul className="mt-3 space-y-2 text-ink-800">
+                <div className="border-l-2 border-ink-400 bg-paper-200 p-6">
+                  <p className="kicker">Skip kalau kamu...</p>
+                  <ul className="mt-4 space-y-2.5 text-ink-800">
                     {review.notFor.map((b, i) => (
-                      <li key={i} className="flex gap-2">
-                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-rose-500" />
+                      <li key={i} className="flex gap-3">
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-400"
+                          aria-hidden
+                        />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -231,25 +252,37 @@ export default function ReviewPage({
               ) : null}
             </div>
 
-            <h2 id="faq" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="faq"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Pertanyaan yang sering ditanyakan
             </h2>
             <FAQ items={review.faq} />
 
-            <h2 id="kesimpulan" className="mt-10 mb-3 text-2xl font-bold sm:text-3xl">
+            <h2
+              id="kesimpulan"
+              className="mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem]"
+            >
               Kesimpulan
             </h2>
-            <p className="text-lg text-ink-800">
-              <strong>{review.productName}</strong> adalah pilihan{" "}
+            <p className="font-serif text-xl leading-relaxed text-ink-800">
+              <strong className="font-semibold text-ink-900">
+                {review.productName}
+              </strong>{" "}
+              adalah pilihan{" "}
               {review.rating >= 4.5
                 ? "sangat direkomendasikan"
                 : review.rating >= 4
                   ? "yang layak dibeli"
                   : "yang layak dipertimbangkan"}{" "}
               di kelasnya. Skor akhir editor:{" "}
-              <strong>{review.rating.toFixed(1)} / 5</strong>.
+              <strong className="font-semibold text-accent">
+                {review.rating.toFixed(1)} / 5
+              </strong>
+              .
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <AffiliateButton
                 id={review.pricing.primaryAffiliateId}
                 variant="cta"
@@ -269,27 +302,28 @@ export default function ReviewPage({
             </div>
 
             {related.length > 0 ? (
-              <div className="mt-16">
-                <h2 className="mb-6 text-2xl font-bold sm:text-3xl">
-                  Artikel Terkait
+              <div className="mt-20 border-t border-ink-200 pt-10">
+                <p className="kicker-accent">Lanjut baca</p>
+                <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight text-ink-900 sm:text-[2.125rem]">
+                  Artikel terkait
                 </h2>
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2">
                   {related.slice(0, 4).map((r) => (
                     <ReviewCard key={r.slug} review={r} />
                   ))}
                 </div>
                 <Link
                   href={cat ? `/kategori/${cat.slug}` : "/"}
-                  className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
+                  className="group mt-8 inline-flex items-center gap-1 text-sm font-medium text-ink-900 underline-offset-4 hover:underline hover:decoration-accent"
                 >
                   Lihat semua di {cat?.name ?? "kategori"}{" "}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
             ) : null}
           </article>
 
-          <div className="lg:sticky lg:top-20 lg:self-start">
+          <div className="lg:sticky lg:top-24 lg:self-start">
             <SidebarCTA review={review} related={related.slice(0, 3)} />
           </div>
         </div>

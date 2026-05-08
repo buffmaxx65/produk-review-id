@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: 255 255 255;
-  --foreground: 15 23 42;
-  --muted: 241 245 249;
-  --border: 226 232 240;
+  --background: 251 248 243;
+  --foreground: 15 14 12;
+  --muted: 244 239 230;
+  --border: 226 218 202;
 }
 
 html {
@@ -16,24 +16,30 @@ html {
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));
-  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  font-feature-settings: "ss01" 1, "ss02" 1, "kern" 1, "liga" 1;
+}
+
+::selection {
+  background: #0F0E0C;
+  color: #FBF8F3;
 }
 
 @layer components {
+  /* Buttons — editorial: rounded-md, no shadow */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold tracking-tight transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-paper focus-visible:ring-ink-900 disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply bg-brand-600 text-white hover:bg-brand-700 shadow-sm;
+    @apply bg-ink-900 text-paper-50 hover:bg-ink-800;
   }
   .btn-cta {
-    @apply bg-accent text-white hover:bg-accent-dark shadow-sm;
+    @apply bg-accent text-white hover:bg-accent-dark;
   }
   .btn-secondary {
     @apply bg-ink-100 text-ink-900 hover:bg-ink-200;
   }
   .btn-outline {
-    @apply border border-ink-200 bg-white text-ink-900 hover:bg-ink-50;
+    @apply border border-ink-300 bg-transparent text-ink-900 hover:border-ink-900 hover:bg-ink-100;
   }
   .btn-sm {
     @apply px-3 py-1.5 text-xs;
@@ -42,14 +48,31 @@ body {
     @apply px-6 py-3 text-base;
   }
 
+  /* Eyebrow / kicker */
+  .kicker {
+    @apply text-[11px] font-semibold uppercase tracking-kicker text-ink-500;
+  }
+  .kicker-accent {
+    @apply text-[11px] font-semibold uppercase tracking-kicker text-accent;
+  }
+
+  /* Badges */
   .badge {
-    @apply inline-flex items-center gap-1 rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-700;
+    @apply inline-flex items-center gap-1 rounded-full border border-ink-200 bg-paper-50 px-2.5 py-1 text-xs font-medium text-ink-700;
   }
   .badge-brand {
-    @apply bg-brand-100 text-brand-800;
+    @apply border-brand-500 bg-paper-50 text-brand-700;
   }
   .badge-accent {
-    @apply bg-orange-100 text-orange-800;
+    @apply border-accent-gold/50 bg-[#FCEFD2] text-[#7A4F00];
+  }
+
+  /* Surfaces */
+  .surface {
+    @apply rounded-xl border border-ink-200 bg-white;
+  }
+  .surface-paper {
+    @apply rounded-xl border border-ink-200 bg-paper-200;
   }
 
   .container-prose {
@@ -57,56 +80,67 @@ body {
   }
 
   .section {
-    @apply py-12 sm:py-16 lg:py-20;
+    @apply py-14 sm:py-20 lg:py-24;
   }
 
-  /* Prose / artikel */
+  /* Display heading utility */
+  .display {
+    @apply font-serif font-medium tracking-tight text-ink-900;
+    font-feature-settings: "ss01" 1, "ss02" 1;
+  }
+
+  .hr-line {
+    @apply h-px w-full bg-ink-200;
+  }
+
+  /* Article body */
   .article-prose {
     @apply text-ink-800 leading-relaxed;
   }
   .article-prose h2 {
-    @apply mt-10 mb-4 text-2xl sm:text-3xl font-bold tracking-tight text-ink-900 scroll-mt-28;
+    @apply mt-12 mb-4 font-serif text-3xl font-medium tracking-tight text-ink-900 scroll-mt-28 sm:text-[2.125rem];
   }
   .article-prose h3 {
-    @apply mt-8 mb-3 text-xl sm:text-2xl font-semibold text-ink-900 scroll-mt-28;
+    @apply mt-8 mb-3 font-serif text-2xl font-medium tracking-tight text-ink-900 scroll-mt-28;
   }
   .article-prose p {
-    @apply my-4 text-base sm:text-lg;
+    @apply my-4 text-[1.0625rem] sm:text-lg;
   }
   .article-prose a {
-    @apply text-brand-700 underline-offset-2 hover:underline;
+    @apply text-ink-900 underline decoration-accent decoration-2 underline-offset-4 hover:decoration-accent-dark;
   }
   .article-prose ul {
-    @apply my-4 list-disc pl-6 space-y-2;
+    @apply my-4 list-disc pl-6 space-y-2 marker:text-accent;
   }
   .article-prose ol {
-    @apply my-4 list-decimal pl-6 space-y-2;
+    @apply my-4 list-decimal pl-6 space-y-2 marker:text-accent marker:font-semibold;
   }
   .article-prose blockquote {
-    @apply my-6 border-l-4 border-brand-500 bg-brand-50 px-5 py-3 italic text-ink-800;
+    @apply my-8 border-l-2 border-accent pl-5 font-serif text-xl italic text-ink-800;
   }
   .article-prose strong {
     @apply font-semibold text-ink-900;
   }
   .article-prose img {
-    @apply my-6 rounded-xl shadow-card;
+    @apply my-8 rounded-md;
   }
   .article-prose table {
     @apply my-6 w-full border-collapse text-sm;
   }
-  .article-prose th, .article-prose td {
-    @apply border border-ink-200 px-4 py-2 text-left;
+  .article-prose th,
+  .article-prose td {
+    @apply border-b border-ink-200 px-4 py-3 text-left;
   }
   .article-prose th {
-    @apply bg-ink-50 font-semibold text-ink-900;
+    @apply bg-paper-200 font-semibold text-ink-900 uppercase text-xs tracking-wider;
   }
   .article-prose code {
-    @apply rounded bg-ink-100 px-1.5 py-0.5 text-sm font-mono text-brand-800;
+    @apply rounded bg-ink-100 px-1.5 py-0.5 text-sm font-mono text-ink-900;
   }
 }
 
-/* Scrollbar halus */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 6px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-thumb { background: #C0B7A4; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #6E6553; }

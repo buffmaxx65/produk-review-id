@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { siteConfig } from "@/lib/site";
@@ -11,10 +11,12 @@ const inter = Inter({
   variable: "--font-sans",
   display: "swap",
 });
-const serif = Source_Serif_4({
+const serif = Fraunces({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0ea5e9",
+  themeColor: "#FBF8F3",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,7 +76,7 @@ export default function RootLayout({
           />
         ) : null}
       </head>
-      <body className="min-h-screen flex flex-col bg-white antialiased font-sans">
+      <body className="min-h-screen flex flex-col bg-paper-100 text-ink-900 antialiased font-sans">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

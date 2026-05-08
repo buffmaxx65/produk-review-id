@@ -1,40 +1,36 @@
-import { Award, Tag } from "lucide-react";
 import { StarRating } from "../StarRating";
 import { AffiliateButton } from "../AffiliateButton";
 import type { Review } from "@/lib/reviews";
 
 export function VerdictBox({ review }: { review: Review }) {
   return (
-    <div className="my-8 overflow-hidden rounded-2xl border-2 border-brand-200 bg-gradient-to-br from-brand-50 to-white shadow-card">
-      <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-3 lg:items-center">
+    <aside className="my-10 border-y-2 border-ink-900 bg-paper-200">
+      <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-3 lg:items-start lg:gap-10">
         <div className="lg:col-span-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="badge badge-brand">
-              <Award className="h-3.5 w-3.5" /> Verdict editor
-            </span>
-            <span className="badge">
-              <Tag className="h-3.5 w-3.5" />
-              {review.brand}
-            </span>
-          </div>
-          <h2 className="mt-3 text-xl font-bold text-ink-900 sm:text-2xl">
-            Ringkasan Review {review.productName}
+          <p className="kicker-accent">Verdict editor</p>
+          <h2 className="mt-3 font-serif text-2xl font-medium leading-tight tracking-tight text-ink-900 sm:text-3xl">
+            Ringkasan {review.productName}
           </h2>
-          <p className="mt-2 text-ink-700">{review.excerpt}</p>
-          <div className="mt-4 flex items-center gap-3">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-700 sm:text-lg">
+            {review.excerpt}
+          </p>
+          <div className="mt-6 flex items-center gap-4">
             <StarRating value={review.rating} size="lg" />
-            <span className="text-2xl font-bold text-ink-900">
+            <span className="font-serif text-3xl font-medium text-ink-900">
               {review.rating.toFixed(1)}
               <span className="text-base font-medium text-ink-500"> / 5</span>
             </span>
           </div>
         </div>
 
-        <div className="rounded-xl bg-white p-5 shadow-card">
+        <div className="border-t border-ink-200 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+          <p className="kicker">Beli {review.brand}</p>
           {review.pricing.rangeText ? (
-            <p className="text-sm text-ink-500">{review.pricing.rangeText}</p>
+            <p className="mt-2 font-serif text-lg text-ink-900">
+              {review.pricing.rangeText}
+            </p>
           ) : null}
-          <div className="mt-2 flex flex-col gap-2">
+          <div className="mt-4 flex flex-col gap-2">
             <AffiliateButton
               id={review.pricing.primaryAffiliateId}
               variant="cta"
@@ -54,12 +50,12 @@ export function VerdictBox({ review }: { review: Review }) {
               />
             ))}
           </div>
-          <p className="mt-3 text-[11px] leading-relaxed text-ink-500">
+          <p className="mt-3 text-xs leading-relaxed text-ink-500">
             Harga dapat berubah sewaktu-waktu. Kami mendapatkan komisi tanpa
             biaya tambahan untukmu.
           </p>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
