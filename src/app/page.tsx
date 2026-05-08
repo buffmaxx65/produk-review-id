@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
 
           <aside className="space-y-6">
-            <Newsletter variant="card" />
+            <Newsletter variant="compact" />
             <div className="rounded-2xl border border-ink-200 bg-white p-5">
               <h3 className="text-sm font-bold uppercase tracking-wider text-ink-500">
                 Trending sekarang

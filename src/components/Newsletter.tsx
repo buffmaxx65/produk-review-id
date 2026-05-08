@@ -5,7 +5,7 @@ import { Mail, CheckCircle2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  variant?: "card" | "inline";
+  variant?: "card" | "inline" | "compact";
   className?: string;
 };
 
@@ -36,6 +36,69 @@ export function Newsletter({ variant = "card", className }: Props) {
       setState("error");
       setMessage(err instanceof Error ? err.message : "Terjadi kesalahan");
     }
+  }
+
+  if (variant === "compact") {
+    // Varian sempit untuk sidebar/area kecil. Single-column, label mengecil,
+    // tidak ada decorative blur agar tidak overflow di lebar 280-320px.
+    return (
+      <div
+        className={cn(
+          "rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 p-5 text-white",
+          className,
+        )}
+      >
+        <p className="badge badge-brand">
+          <Mail className="h-3.5 w-3.5" /> Newsletter
+        </p>
+        <h3 className="mt-2 text-lg font-bold leading-snug">
+          Rekomendasi produk terbaik tiap minggu
+        </h3>
+        <p className="mt-1 text-sm text-brand-100">
+          Tips, deal terbaik, dan review eksklusif. Tanpa spam.
+        </p>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4 flex flex-col gap-2"
+          aria-label="Newsletter subscription"
+        >
+          <label className="sr-only" htmlFor="newsletter-email-compact">
+            Email
+          </label>
+          <input
+            id="newsletter-email-compact"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="kamu@email.com"
+            className="rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-sm text-white placeholder-brand-100/80 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40"
+          />
+          <button
+            type="submit"
+            disabled={state === "loading"}
+            className="btn btn-cta justify-center"
+          >
+            {state === "loading" ? "Mengirim..." : "Subscribe"}
+          </button>
+          {message ? (
+            <p
+              className={cn(
+                "inline-flex items-start gap-1.5 text-xs",
+                state === "success" ? "text-emerald-200" : "text-rose-200",
+              )}
+            >
+              {state === "success" ? (
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+              ) : (
+                <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+              )}
+              <span>{message}</span>
+            </p>
+          ) : null}
+        </form>
+      </div>
+    );
   }
 
   if (variant === "inline") {
@@ -81,7 +144,7 @@ export function Newsletter({ variant = "card", className }: Props) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 p-8 text-white sm:p-10",
+        "relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 p-6 text-white sm:p-10",
         className,
       )}
     >
@@ -89,7 +152,7 @@ export function Newsletter({ variant = "card", className }: Props) {
         className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-400/30 blur-3xl"
         aria-hidden
       />
-      <div className="relative grid gap-6 md:grid-cols-2 md:items-center">
+      <div className="relative grid gap-6 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="badge badge-brand">
             <Mail className="h-3.5 w-3.5" /> Newsletter Mingguan

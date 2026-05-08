@@ -35,6 +35,12 @@ body {
   .btn-outline {
     @apply border border-ink-200 bg-white text-ink-900 hover:bg-ink-50;
   }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
 
   .badge {
     @apply inline-flex items-center gap-1 rounded-full bg-ink-100 px-2.5 py-1 text-xs font-medium text-ink-700;

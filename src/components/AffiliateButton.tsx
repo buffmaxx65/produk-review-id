@@ -48,6 +48,18 @@ export function AffiliateButton({
     source ? `?source=${encodeURIComponent(source)}` : ""
   }`;
 
+  const hasPrice = showPrice && Boolean(link.price);
+  // Untuk tombol full-width dengan harga, gunakan layout 2-baris (label di atas,
+  // harga di bawah) supaya tidak terpotong di sidebar sempit (≤320px).
+  const stacked = fullWidth && hasPrice;
+
+  const priceBadgeClass = cn(
+    "inline-block whitespace-nowrap rounded-md px-1.5 py-0.5 text-xs font-semibold",
+    variant === "outline" || variant === "secondary"
+      ? "bg-ink-900/10 text-ink-900"
+      : "bg-white/20 text-white",
+  );
+
   return (
     <Link
       href={trackUrl}
@@ -58,17 +70,25 @@ export function AffiliateButton({
         variantClass,
         sizeClass,
         fullWidth && "w-full",
+        stacked && "flex-col gap-1",
         className,
       )}
       data-affiliate-id={id}
     >
-      <span>{label ?? link.label}</span>
-      {showPrice && link.price ? (
-        <span className="rounded-md bg-white/15 px-1.5 py-0.5 text-[11px] font-semibold">
-          {link.price}
-        </span>
-      ) : null}
-      <ExternalLink className="h-4 w-4" />
+      {stacked ? (
+        <>
+          <span className="text-center">{label ?? link.label}</span>
+          <span className={priceBadgeClass}>{link.price}</span>
+        </>
+      ) : (
+        <>
+          <span>{label ?? link.label}</span>
+          {hasPrice ? (
+            <span className={priceBadgeClass}>{link.price}</span>
+          ) : null}
+          <ExternalLink className="h-4 w-4 shrink-0" aria-hidden />
+        </>
+      )}
     </Link>
   );
 }

@@ -82,7 +82,7 @@ export function SidebarCTA({ review, related }: Props) {
         </div>
       ) : null}
 
-      <Newsletter variant="card" />
+      <Newsletter variant="compact" />
     </aside>
   );
 }
