@@ -30,14 +30,14 @@ export function Header() {
         <div className="flex items-center gap-1.5">
           <Link
             href="/cari"
-            className="hidden h-10 w-10 items-center justify-center rounded-md text-ink-700 hover:bg-ink-100 sm:flex"
+            className="flex h-10 w-10 items-center justify-center rounded-md text-ink-700 hover:bg-ink-100"
             aria-label="Cari"
           >
             <Search className="h-[18px] w-[18px]" />
           </Link>
           <Link
             href="/newsletter"
-            className="hidden btn btn-primary btn-sm md:inline-flex"
+            className="hidden btn btn-primary btn-sm sm:inline-flex"
           >
             Subscribe
           </Link>

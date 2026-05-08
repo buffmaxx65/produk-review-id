@@ -146,10 +146,10 @@ export function Newsletter({ variant = "card", className }: Props) {
         className,
       )}
     >
-      <div className="container grid items-end gap-10 lg:grid-cols-12 lg:gap-16">
+      <div className="container grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
         <div className="lg:col-span-7">
           <p className="kicker-accent">Newsletter mingguan</p>
-          <h3 className="mt-3 font-serif text-3xl font-medium leading-tight tracking-tight text-ink-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+          <h3 className="mt-3 font-serif text-[1.875rem] font-medium leading-[1.1] tracking-tight text-ink-900 sm:text-[2.25rem] lg:text-[2.5rem]">
             Dapatkan rekomendasi produk{" "}
             <em className="italic text-accent">terbaik</em> tiap minggu.
           </h3>

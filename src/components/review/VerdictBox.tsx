@@ -4,9 +4,9 @@ import type { Review } from "@/lib/reviews";
 
 export function VerdictBox({ review }: { review: Review }) {
   return (
-    <aside className="my-10 border-y-2 border-ink-900 bg-paper-200">
-      <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-3 lg:items-start lg:gap-10">
-        <div className="lg:col-span-2">
+    <aside className="my-10 border-y border-ink-900 bg-paper-200">
+      <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-5 lg:items-start lg:gap-10">
+        <div className="lg:col-span-3">
           <p className="kicker-accent">Verdict editor</p>
           <h2 className="mt-3 font-serif text-2xl font-medium leading-tight tracking-tight text-ink-900 sm:text-3xl">
             Ringkasan {review.productName}
@@ -23,7 +23,7 @@ export function VerdictBox({ review }: { review: Review }) {
           </div>
         </div>
 
-        <div className="border-t border-ink-200 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <div className="border-t border-ink-300 pt-6 lg:col-span-2 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
           <p className="kicker">Beli {review.brand}</p>
           {review.pricing.rangeText ? (
             <p className="mt-2 font-serif text-lg text-ink-900">

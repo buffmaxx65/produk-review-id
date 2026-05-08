@@ -8,8 +8,8 @@ export function InArticleCTA({ review }: { review: Review }) {
       className="my-12 border-y border-ink-900 bg-paper-200 px-6 py-8 sm:px-8 sm:py-10"
       aria-label="Penawaran terbaik"
     >
-      <div className="grid items-center gap-6 sm:grid-cols-3">
-        <div className="sm:col-span-2">
+      <div className="grid items-center gap-6 sm:grid-cols-5">
+        <div className="sm:col-span-3">
           <p className="kicker-accent">Penawaran hari ini</p>
           <h3 className="mt-3 font-serif text-2xl font-medium leading-tight tracking-tight text-ink-900 sm:text-3xl">
             {review.productName}
@@ -23,11 +23,12 @@ export function InArticleCTA({ review }: { review: Review }) {
             Garansi resmi dari penjual official.
           </p>
         </div>
-        <div className="flex flex-col gap-2 sm:items-end">
+        <div className="flex flex-col gap-2 sm:col-span-2">
           <AffiliateButton
             id={review.pricing.primaryAffiliateId}
             variant="cta"
             size="lg"
+            fullWidth
             showPrice
             source={`in-article:${review.slug}`}
             label="Beli Sekarang"
@@ -36,6 +37,7 @@ export function InArticleCTA({ review }: { review: Review }) {
             <AffiliateButton
               id={review.pricing.secondaryAffiliateIds[0]}
               variant="outline"
+              fullWidth
               source={`in-article:${review.slug}`}
             />
           ) : null}
